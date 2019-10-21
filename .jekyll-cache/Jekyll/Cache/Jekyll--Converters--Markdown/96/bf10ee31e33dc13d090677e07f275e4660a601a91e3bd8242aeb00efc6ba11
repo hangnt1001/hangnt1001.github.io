@@ -1,0 +1,110 @@
+I"Á<p>In this post, Iâ€™ll show you how Jenkins can be used to automate continuos integration for IOS application to build IOS .ipa.
+<br />
+<strong>Requirements</strong></p>
+
+<ul>
+  <li>Xcode</li>
+  <li>Jenkins</li>
+  <li>MacOS</li>
+</ul>
+
+<p>From my structure, I am using one Jenkins master installed on another Linux server and use Jenkins slave on MacOS. After configuring Jenkins master and slave, We add the following plugins to Jenkins master. (Jenkins slave will use the recommended plugins).</p>
+
+<ul>
+  <li>Git</li>
+  <li>Xcode Integration</li>
+  <li>Hookeyapp (Used to manage version of .Ipa)</li>
+  <li>Slack (Used to notify event)</li>
+</ul>
+
+<p><strong>Setup a new Jenkins item</strong>
+<br />
+Create a new Jenkins project using freestyle option and the following settings.</p>
+<ul>
+  <li>Give your project name</li>
+  <li>Select Git, paste the right repository and select the right credentials.</li>
+  <li>Make sure the right branche is selected
+<img src="https://d2fufucfxami3o.cloudfront.net/img/post/jenkinsipa1.JPG" alt="Jenkins IOS" class="img-responsive" /></li>
+  <li>Additional, add Job weight number to define the number of processor(s) used to build. Add the lable of MacOS slave used to build IOS application at Retrict where this project can be run.</li>
+</ul>
+
+<p><img src="https://d2fufucfxami3o.cloudfront.net/img/post/jenkinsipa2.JPG" alt="Jenkins IOS" class="img-responsive" /></p>
+
+<ul>
+  <li>
+    <p>If we want to schedule strigger, select build periodically.</p>
+  </li>
+  <li>
+    <p>To build IOS .ipa, we need three build steps:</p>
+  </li>
+</ul>
+
+<ol>
+  <li>Excute shell for running pod install or independent packages</li>
+</ol>
+
+<pre><code data-trim="" class="yaml">
+cd ${WORKSPACE}
+/usr/local/bin/pod install
+</code></pre>
+
+<ol>
+  <li>Xcode build</li>
+</ol>
+
+<ul>
+  <li>To use xcode, we should know more about team provisioning profiles</li>
+</ul>
+
+<p><img src="https://d2fufucfxami3o.cloudfront.net/img/post/teamprovisioningprofile_2x.png" alt="Jenkins IOS" class="img-responsive" /></p>
+
+<p>Link ref: <a href="https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppStoreDistributionTutorial/CreatingYourTeamProvisioningProfile/CreatingYourTeamProvisioningProfile.html">Link</a></p>
+
+<ul>
+  <li>If everything is fine until this point, you can go on and add an Xcode build step. This plugin will invoke the xcodebuild command line tool and you can add all the build parameters here.</li>
+  <li>In this case:</li>
+  <li>Target: yourProjectName</li>
+  <li>Clean before build? Yes</li>
+  <li>Generate Archive? Yes</li>
+  <li>Pack application and build .ipa? Yes</li>
+  <li>.ipa file name pattern: ${VERSION}</li>
+  <li>Output directory:  ${BUILD_NUMBER}/${BUILD_ID}</li>
+  <li>Unlock keychain? Yes</li>
+  <li>Keychain path: ${HOME}/Library/Keychains/login.keychain</li>
+  <li>Keychain password: your administrator user password</li>
+  <li>Xcode Schema File: yourProjectSchema</li>
+  <li>Custom xcodebuild arguments: -sdk iphoneos  -archivePath yourPath</li>
+  <li>Xcode Workspace File: ${WORKSPACE}/yourProjectName</li>
+  <li>Xcode Project Directory: ${WORKSPACE}</li>
+  <li>Xcode Project File: ${WORKSPACE}/yourProjectName</li>
+  <li>Build output directory: ${WORKSPACE}/DerivedData</li>
+  <li>Provide version number and run avgtool? YES</li>
+  <li>Technical version: ${BUILD_ID}</li>
+</ul>
+
+<p><img src="https://d2fufucfxami3o.cloudfront.net/img/post/jenkinsipa3.JPG" alt="Jenkins IOS" class="img-responsive" /></p>
+
+<ol>
+  <li>Export IOS .ipa
+    <ul>
+      <li>Create file options.plist with following content</li>
+    </ul>
+  </li>
+</ol>
+
+<p><img src="https://d2fufucfxami3o.cloudfront.net/img/post/jenkinsipa4.JPG" alt="Jenkins IOS" class="img-responsive" /></p>
+
+<ul>
+  <li>Excute shell to export IOS .ipa</li>
+</ul>
+<pre><code data-trim="" class="yaml">
+cd ${WORKSPACE}/build
+xcodebuild -exportArchive -archivePath  YourXcarchive  -exportPath  YourPath  -exportOptionsPlist  options.plist
+</code></pre>
+
+<ul>
+  <li>After building the IOS .ipa, we can upload to hockeyApp or send to the FTP server then QA can use for testing. We also can use slack plugin to notify the event for the job.</li>
+</ul>
+
+<p><img src="https://d2fufucfxami3o.cloudfront.net/img/post/jenkinsipa5.JPG" alt="Jenkins IOS" class="img-responsive" /></p>
+:ET

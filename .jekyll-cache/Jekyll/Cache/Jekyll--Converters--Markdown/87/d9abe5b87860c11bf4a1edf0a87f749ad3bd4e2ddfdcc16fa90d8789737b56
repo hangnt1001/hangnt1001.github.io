@@ -1,0 +1,18 @@
+I"f<h3 id="how-to-remove-aws-elb-ssl-certificate">How to remove AWS ELB SSL Certificate</h3>
+
+<p>In order to delete the certificate which we have applied to an ELB, we will need to delete the ELB or change the certificate of the ELB.</p>
+
+<p>We can do this in the Management Console by selecting the ELB in the Load Balancer section of the console and selecting the delete option.</p>
+
+<p>We may need to take the additional steps of removing the certificate from the IAM policy by using the iam API command.</p>
+
+<p>To make sure we delete the right certificate, we should found the correct name by command:</p>
+<pre><code data-trim="" class="yaml">
+aws iam list-server-certificates
+</code></pre>
+
+<p>Then delete the certificate by command</p>
+<pre><code data-trim="" class="yaml">
+aws iam delete-server-certificate --server-certificate-name nameofcertificate
+</code></pre>
+:ET

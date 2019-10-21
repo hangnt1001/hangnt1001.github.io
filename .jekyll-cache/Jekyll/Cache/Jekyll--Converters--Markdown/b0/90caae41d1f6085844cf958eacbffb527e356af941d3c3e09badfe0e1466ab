@@ -1,0 +1,33 @@
+I"=<p>With the old outlook 2007 or 2010, we may have trouble to configure office 365.</p>
+
+<p>To be able to setup your outlook 2007 or 2010 withou issue, we need to download and install software patch to support office 365.</p>
+
+<p>Below is the easy way to update a patch.</p>
+
+<ol>
+  <li>
+    <p>Go to the <a href="https://www.microsoft.com/en-us/download/details.aspx?id=50360">Microsoft Download Center</a></p>
+  </li>
+  <li>
+    <p>Under <strong>Office 365 Desktop Setup Tool for Office 2010 and Office 2007</strong>, click <strong>Download</strong></p>
+  </li>
+  <li>
+    <p>Click <strong>Save file</strong></p>
+  </li>
+  <li>
+    <p>Open the .exe file that downloads.</p>
+  </li>
+  <li>
+    <p>In the <strong>Microsoft Office 365 desktop setup</strong> window that appears, log in with your Office 365 email address and password.</p>
+  </li>
+  <li>
+    <p>Click <strong>Continue</strong>, then click <strong>I accept</strong></p>
+  </li>
+  <li>
+    <p>When the updates have completed, click <strong>Finish</strong>.</p>
+  </li>
+  <li>
+    <p><strong>Done</strong></p>
+  </li>
+</ol>
+:ET

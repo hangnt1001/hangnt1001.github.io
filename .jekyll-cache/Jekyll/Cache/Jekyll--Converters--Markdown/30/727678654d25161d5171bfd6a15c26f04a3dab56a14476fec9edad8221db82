@@ -1,0 +1,21 @@
+I"¡<p><strong>Get the list of remote tags</strong></p>
+
+<pre><code data-trim="" class="yaml">
+git fetch
+</code></pre>
+
+<p><strong>List the tags in the repository</strong></p>
+
+<pre><code data-trim="" class="yaml">
+git tag
+</code></pre>
+
+<p><strong>Remove a tag from a repository</strong></p>
+
+<pre><code data-trim="" class="yaml">
+git tag -d tag-name
+git push origin :refs/tags/tag-name
+</code></pre>
+
+<p>Thank you!</p>
+:ET

@@ -1,0 +1,30 @@
+I"Ñ<p><strong>Always-On HTTPS With Nginx Behind an ELB</strong></p>
+
+<p><img src="https://d2fufucfxami3o.cloudfront.net/img/post/aws-elb-ssl02.png" alt="AWS lambda" class="img-responsive" /></p>
+
+<p>In this scenario, we have an ELB accepting HTTPS traffic and pass it to NGINX servers listening on port 80. We can load the SSL cert directly on the ELB and it can handle the secure traffic for all server instances behind that balancer. This removes the need to manage the cert on each instance, which is nice. And we want Nginx to force all requests that were not originally made with HTTPS to redirect to the same URL on HTTPS, execpt requests for the health check, which the ELB will make directly over HTTP.</p>
+
+<p>First of all, attach your SSL cert to the load balancer. And then configure both port 80 and 443 to send traffic to each instance through port 80 like this:</p>
+
+<p><img src="https://d2fufucfxami3o.cloudfront.net/img/post/aws-elb-ssl01.png" alt="AWS lambda" class="img-responsive" /></p>
+
+<p>In your Nginx site configuration file, add a single server block listening on port 80 since all traffic is now flowing through that port. Now you only need to a bit to check for HTTPS and redirect if itâ€™s not.</p>
+
+<pre><code data-trim="" class="yaml">
+	server {
+   # all traffic, secure or otherwise, comes in on 80 from the ELB
+   listen 80;
+ 
+   # ELB stores the protocol used between the client 
+   # and the load balancer in the X-Forwarded-Proto request header.
+   # Check for 'https' and redirect if not
+   if ($http_x_forwarded_proto != "https") {
+      rewrite ^(.*)$ https://$server_name$1 permanent;
+    }
+ 
+   server_name  your-secure-site.com  www.your-secure-site.com;
+ 
+.... (the rest of your config)
+   }
+</code></pre>
+:ET
