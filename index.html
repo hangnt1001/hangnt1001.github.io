@@ -1,9 +1,1042 @@
----
-layout: index
-section-type: index
-sitemap:
-  priority: 1.0
----
-<!--
-If you want to have a static message in your intro layout, disable the dynamic-typing in the _config.yml and write here your text
--->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry Nguyen - DevOps Engineer</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #ff451b;
+            --secondary-color: #333333;
+            --light-color: #f9f9f9;
+            --dark-color: #1a1a1a;
+            --accent-color: #2b2b2b;
+            --text-color: #7d7789;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--dark-color);
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--light-color);
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--primary-color);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--light-color);
+            font-weight: 600;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            margin-right: 15px;
+            margin-top: 15px;
+        }
+        
+        .btn:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+        
+        .btn-download {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .btn-download:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 60px;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -15px;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* Header Styles */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            padding: 20px 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        header.sticky {
+            background-color: var(--dark-color);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo a {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .logo a span {
+            color: var(--primary-color);
+        }
+        
+        .nav-menu {
+            display: flex;
+        }
+        
+        .nav-menu li {
+            list-style: none;
+            margin-left: 30px;
+        }
+        
+        .nav-menu li a {
+            font-size: 16px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background-color: var(--dark-color);
+            position: relative;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .hero h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+        
+        .social-icons {
+            display: flex;
+            margin-top: 30px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            margin-right: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        /* About Section */
+        .about {
+            background-color: var(--accent-color);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-img {
+            position: relative;
+        }
+        
+        .about-img img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        
+        .about-info h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .about-details {
+            margin: 25px 0;
+        }
+        
+        .detail-item {
+            margin-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .detail-title {
+            min-width: 120px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .detail-info {
+            color: var(--light-color);
+        }
+        
+        .skill-item {
+            margin-bottom: 20px;
+        }
+        
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .skill-bar {
+            height: 6px;
+            background-color: #444;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .skill-bar span {
+            display: block;
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+            transition: width 1s ease;
+        }
+        
+        /* Experience Section */
+        .experience {
+            background-color: var(--dark-color);
+        }
+        
+        .timeline {
+            position: relative;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background-color: var(--accent-color);
+        }
+        
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 30px;
+            position: relative;
+            margin-bottom: 40px;
+            width: 50%;
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 30px;
+            left: 50%;
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            top: 20px;
+            right: -8px;
+        }
+        
+        .timeline-item:nth-child(even):before {
+            right: auto;
+            left: -8px;
+        }
+        
+        .timeline-content {
+            background-color: var(--accent-color);
+            padding: 30px;
+            border-radius: 5px;
+            position: relative;
+            width: 100%;
+        }
+        
+        .timeline-content h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-content .company {
+            display: block;
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content .date {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        /* Services Section */
+        .services {
+            background-color: var(--accent-color);
+        }
+        
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-item {
+            background-color: var(--dark-color);
+            padding: 30px;
+            border-radius: 5px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .service-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-size: 40px;
+        }
+        
+        .service-item h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .projects {
+            background-color: var(--dark-color);
+        }
+        
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-item {
+            background-color: var(--accent-color);
+            padding: 30px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .project-item h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .project-details {
+            margin-bottom: 20px;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .project-tech span {
+            background-color: rgba(255, 69, 27, 0.1);
+            color: var(--primary-color);
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .contact-info {
+            margin-bottom: 30px;
+        }
+        
+        .contact-info h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-details {
+            list-style: none;
+        }
+        
+        .contact-details li {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .contact-details li i {
+            margin-right: 15px;
+            color: var(--primary-color);
+            font-size: 20px;
+        }
+        
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: var(--accent-color);
+            border: none;
+            border-radius: 5px;
+            color: white;
+        }
+        
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: #aaa;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+            resize: none;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: var(--accent-color);
+        }
+        
+        /* Responsive Styles */
+        @media screen and (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline:before {
+                left: 30px;
+            }
+            
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                width: 100%;
+                padding-left: 60px;
+                padding-right: 0;
+                left: 0;
+            }
+            
+            .timeline-item:before,
+            .timeline-item:nth-child(even):before {
+                left: 22px;
+                right: auto;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background-color: var(--dark-color);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                transition: all 0.3s ease;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin: 20px 0;
+            }
+            
+            .hero h1 {
+                font-size: 42px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="#hero">Harry <span>Nguyen</span></a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h4>Welcome</h4>
+                <h1>Harry Nguyen</h1>
+                <p>DevOps AWS | GCP | Kubernetes Lover | Docker | CICD | Terraform | Jenkins | GitHub Actions | ArgoCD Across clusters | GitOps</p>
+                <div class="social-icons">
+                    <a href="https://github.com/hangnt1001" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/hangnt1001" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:hangnguyenthanh1991@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#about" class="btn">Learn More</a>
+                    <a href="CV_DevOps_Harry_Nguyen.pdf" download class="btn btn-download"><i class="fas fa-download"></i> Download CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="/images/profile.jpg" alt="Harry Nguyen">
+                </div>
+                <div class="about-info">
+                    <h3>DevOps Engineer & Cloud Solution Architect</h3>
+                    <p>Over 10 years of working experience in DevOps, Cloud Solution Architect, and System Network Administrator, and over 5 years as a DevOps Lead for many kinds of projects.</p>
+                    <p>Having excellent experience with cloud solution architecture (AWS, GCP). Designed, implemented, and managed complete DevOps process, and CICD workflow for many startups from scratch.</p>
+                    <p>Designed cloud architecture for the microservices application running on both Kubernetes and ECS clusters from the beginning. Worked with healthcare platforms that required more security standards like HIPPA, GDPR, HiTrust.</p>
+                    
+                    <div class="about-details">
+                        <div class="detail-item">
+                            <span class="detail-title">Name:</span>
+                            <span class="detail-info">Harry Nguyen (Hàng Nguyễn)</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-title">Education:</span>
+                            <span class="detail-info">Computer Systems Networking and Security, University of Information Technology - Vietnam National University</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-title">Languages:</span>
+                            <span class="detail-info">Vietnamese (Native), English (Professional)</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-title">Location:</span>
+                            <span class="detail-info">Vietnam</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skills">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>AWS</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <span style="width: 95%"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>GCP</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <span style="width: 90%"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Kubernetes</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <span style="width: 95%"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>CI/CD</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <span style="width: 95%"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Terraform</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <span style="width: 90%"></span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>GitOps</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <span style="width: 90%"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Senior DevOps Engineer</h3>
+                        <span class="company">VEVE</span>
+                        <span class="date">August 2022 - Present</span>
+                        <p>Contribute to implementing and managing the old system by using 100% Pulumi typescript following zero-trust security across environments. Migrated the infrastructure of the old system from Pulumi to Terraform for better scalability (Terraform, Vault). Migrated services running in the ECS cluster to the EKS cluster.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>DevOps Lead</h3>
+                        <span class="company">Storhub</span>
+                        <span class="date">January 2021 - August 2022</span>
+                        <p>Designed, implemented and managed all the infrastructure running on AWS from scratch and CI/CD pipelines including dev, staging and production environments. Implemented "Infrastructure as a code", built CICD from scratch for multiple projects.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>DevOps Lead</h3>
+                        <span class="company">Ascend Commerce</span>
+                        <span class="date">November 2019 - June 2021</span>
+                        <p>Took high responsibility for designing, implementing and managing all the infrastructure running on AWS and CI/CD pipelines including dev, staging, and production environments. Refactored CICD pipeline development and maintenance (Jenkins, Harbor, Vault, Kubernetes).</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Senior DevOps</h3>
+                        <span class="company">Rakuten Travel Xchange</span>
+                        <span class="date">June 2019 - January 2021</span>
+                        <p>Took high responsibility for designing, implementing, and managing all the infrastructure running on both GCP and AWS and CI/CD pipelines including dev, staging, and production environments. Rebuilt and improved the application architecture running on GCP for all environments.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>DevOps Lead</h3>
+                        <span class="company">FPT Software</span>
+                        <span class="date">June 2018 - December 2019</span>
+                        <p>A lead of DevOps Team to configure, build and maintain, scale infrastructure which including Dev, QA, UAT and Production environments running on AWS. Designed and implemented application deployment and configuration management solutions and system automation scripts, automation CI/CD pipeline and infrastructure.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>DevOps Solution Architect</h3>
+                        <span class="company">FPT Software</span>
+                        <span class="date">January 2018 - December 2019</span>
+                        <p>Worked on a healthcare project that followed international standards. Designed and implemented application deployment and configuration management solutions and system automation scripts, automation CI/CD pipeline and infrastructure on GCP.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>DevOps Lead</h3>
+                        <span class="company">Mediastep Software Inc.</span>
+                        <span class="date">June 2017 - December 2017</span>
+                        <p>Built, administrated and maintained CI/CD environments running on-premise and cloud (AWS). Lead of DevOps team to control, build and maintain infrastructure for all environments of the whole company and client company.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>IT Administrator / Sysadmin / DevOps</h3>
+                        <span class="company">Mediastep Software Inc.</span>
+                        <span class="date">December 2016 - June 2017</span>
+                        <p>Built, administrated and maintained CI/CD infrastructure, including Dev, QA on premise, Staging and Production environments on cloud. Designed and implemented application deployment and configuration management solutions.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>System and Network Administrator</h3>
+                        <span class="company">TPF GROUP (Australia)</span>
+                        <span class="date">November 2013 - December 2016</span>
+                        <p>Built infrastructure and managed server on cloud (Amazon web service), EC2, RDS, S3, Auto scale, Load balancing, CDN. Controlled, administrated and managed network and system for the whole company across 5 sites (Australia, Vietnam, Hongkong, China, New Zealand Offices).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Services</h2>
+            <div class="services-container">
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Architecture</h3>
+                    <p>Design and implement scalable cloud solutions on AWS and GCP platforms for optimal performance and cost-efficiency.</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>DevOps Implementation</h3>
+                    <p>Set up complete DevOps processes and CI/CD pipelines from scratch, enhancing development efficiency and release quality.</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3>Infrastructure as Code</h3>
+                    <p>Develop infrastructure automation using Terraform, CloudFormation, and Pulumi for consistent and repeatable deployments.</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Security Implementation</h3>
+                    <p>Implement zero-trust security architecture and compliance with standards like HIPAA, GDPR, and HiTrust.</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <h3>Kubernetes Solutions</h3>
+                    <p>Design, deploy, and manage Kubernetes clusters for container orchestration across different environments.</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Monitoring & Scaling</h3>
+                    <p>Implement robust monitoring solutions and auto-scaling strategies to ensure high availability and performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Key Projects</h2>
+            <div class="projects-container">
+                <div class="project-item">
+                    <h3>AWS Zero-Trust Architecture Implementation</h3>
+                    <p class="project-details">Implemented a complete zero-trust security architecture for a financial platform running on AWS, ensuring compliance with regulatory requirements while maintaining high availability.</p>
+                    <div class="project-tech">
+                        <span>AWS</span>
+                        <span>Terraform</span>
+                        <span>Vault</span>
+                        <span>EKS</span>
+                        <span>Helm</span>
+                        <span>Jenkins</span>
+                        <span>Datadog</span>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <h3>Multi-Region Kubernetes Cluster Migration</h3>
+                    <p class="project-details">Successfully migrated services from ECS to multi-region EKS clusters with zero downtime, improving scalability and reducing operational costs by 30%.</p>
+                    <div class="project-tech">
+                        <span>Kubernetes</span>
+                        <span>AWS</span>
+                        <span>Github Action</span>
+                        <span>ArgoCD</span>
+                        <span>GitOps</span>
+                        <span>Terraform</span>
+                        <span>Vault</span>
+                        <span>Doppler</span>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <h3>Healthcare Platform DevOps Implementation</h3>
+                    <p class="project-details">Designed and implemented HIPAA-compliant CI/CD pipelines and infrastructure for healthcare applications, ensuring security while enabling rapid deployment.</p>
+                    <div class="project-tech">
+                        <span>GCP</span>
+                        <span>Jenkins</span>
+                        <span>Terraform</span>
+                        <span>Jfrog</span>
+                        <span>Helm</span>
+                        <span>Vault</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Me</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <ul class="contact-details">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Vietnam</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>hangnguyenthanh1991@gmail.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-globe"></i>
+                            <span>https://hangnt1001.github.io/</span>
+                        </li>
+                    </ul>
+                    <div class="social-icons">
+                        <a href="https://github.com/hangnt1001" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/hangnt1001" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.upwork.com/freelancers/~012dd1deac6d8f621b" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 641 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M494.7 295.6c-50.3 0-83.5-38.9-92.8-53.9c11.9-95.3 46.8-125.4 92.8-125.4c45.5 0 80.9 36.4 80.9 89.7s-35.4 89.7-80.9 89.7zm0-237.8c-81.9 0-127.8 53.4-141 108.4c-14.9-28-25.9-65.5-34.5-100.3H206v141c0 51.1-23.3 89-68.8 89s-71.6-37.8-71.6-89l.5-141H.8v141c0 41.1 13.3 78.4 37.6 105.1c25 27.5 59.2 41.8 98.8 41.8c78.8 0 133.8-60.4 133.8-146.9V112.1c8.2 31.2 27.8 91.1 65.3 143.6l-35 199.4h66.4l23.1-141.3c7.6 6.3 15.7 12 24.2 17c22.2 14 47.7 21.9 73.9 22.8c0 0 4 .2 6.1 .2c81.2 0 145.9-62.9 145.9-147.8s-64.8-148.1-146-148.1z"/></svg></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Subject">
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Harry Nguyen. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Sticky Header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('sticky');
+            } else {
+                header.classList.remove('sticky');
+            }
+        });
+        
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+        
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Animation for Skill Bars
+        const skillSection = document.querySelector('.skills');
+        const skillBars = document.querySelectorAll('.skill-bar span');
+        
+        window.addEventListener('scroll', function() {
+            const sectionPos = skillSection.getBoundingClientRect().top;
+            const screenPos = window.innerHeight / 1.3;
+            
+            if (sectionPos < screenPos) {
+                skillBars.forEach(bar => {
+                    const width = bar.getAttribute('style').slice(7, -1);
+                    bar.style.width = '0';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 300);
+                });
+            }
+        });
+        
+        // Form Submission (Just for demonstration)
+        const contactForm = document.querySelector('.contact-form form');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! This form is not functional in this demo but would be connected to a backend service in a live version.');
+        });
+    </script>
+</body>
+</html>
